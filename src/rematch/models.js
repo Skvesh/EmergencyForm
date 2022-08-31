@@ -1,3 +1,19 @@
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+
+const { getItem } = useAsyncStorage('localData');
+const getInitialState = async () => {
+  try {
+    const item = await getItem();
+    return item
+  } catch(e) {
+    // console.log(e);
+  }
+  // console.log('item!!', item);
+};
+
+const initialState = getInitialState()
+// console.log('!!!LASDJLJLKASD',initialState);
+
 export const session = {
   state: {
     date: new Date().toLocaleDateString().replace(/\//g, '.'),
@@ -8,7 +24,8 @@ export const session = {
     end: '',
     rlp: false,
     rzp: false,
-    vzzs: false
+    vzzs: false,
+    ...initialState.session
   },
   reducers: {
     setSession: (state, payload) => ({...state, ...payload}),
@@ -34,6 +51,7 @@ export const patient = {
     passportNum: '',
     firstAid: '',
     anamnesis: '',
+    ...initialState.patient
   },
   reducers: {
     setPatient: (state, payload) => ({...state, ...payload}),
@@ -55,27 +73,6 @@ export const patient = {
 
 export const finding = {
   state: {
-    // openingEyes: [
-    //   { title: 'spontaneously', number: 4, state: false },
-    //   { title: 'onCall', number: 3, state: false },
-    //   { title: 'onHurt',number: 2, state: false },
-    //   { title: 'none', number: 1, state: false }
-    // ],
-    // verbalContact: [
-    //   { title: 'oriented', number: 5, state: false },
-    //   { title: 'disoriented', number: 4, state: false },
-    //   { title: 'adequate', number: 3, state: false },
-    //   { title: 'inadequate', number: 2, state: false },
-    //   { title: 'none', number: 1, state: false }
-    // ],
-    // motorSkills: [
-    //   { title: 'onCall', number: 6, state: false },
-    //   { title: 'onHurt', number: 5, state: false },
-    //   { title: 'untargeted', number: 4, state: false },
-    //   { title: 'flexion', number: 3, state: false },
-    //   { title: 'extension', number: 2, state: false },
-    //   { title: 'none', number: 1, state: false }
-    // ],
     openingEyes: [
       { title: 'Spontáne', number: 4, checked: false },
       { title: 'Na výzvu', number: 3, checked: false },
@@ -170,12 +167,7 @@ export const finding = {
       { title: 'Návrat > 2 s', checked: false },
       { title: '', addTitle: true, checked: false },
     ],
-    // start: '',
-    // transfer: '',
-    // end: '',
-    // rlp: false,
-    // rzp: false,
-    // vzzs: false
+    ...initialState.finding
   },
   reducers: {
     setFinding: (state, payload) => ({...state, ...payload}),
@@ -194,7 +186,7 @@ export const finding = {
         }
         return el
       })
-      // console.log(array, title, value);
+      // console.log(array, property, newArray);
       // console.log({...state, [key]: value});
       return ({...state, [array]: newArray})
     }
@@ -204,14 +196,15 @@ export const finding = {
 export const image = {
   state: {
     front: [],
-    back: []
+    back: [],
+    ...initialState.image
   },
   reducers: {
     setImage: (state, payload, item) => ({...state, [payload]: [...state[payload], item]}),
     removeImage: (state, payload, id) => ({...state, [payload]: state[payload].filter((item) => item.id !== id)}),
     updateImage: (state, title, payload) => {
-      console.log("UPDATE", [...state[title].filter((item, i) => i !== payload[0]), {...state[title][payload[0]], fill: payload[1]}],
-       {...state[title][payload[0]], fill: payload[1]}, payload[1])
+      // console.log("UPDATE", [...state[title].filter((item, i) => i !== payload[0]), {...state[title][payload[0]], fill: payload[1]}],
+      //  {...state[title][payload[0]], fill: payload[1]}, payload[1])
       return ({
       ...state, [title]: [...state[title].filter((item, i) => i !== payload[0]), {...state[title][payload[0]], fill: payload[1]}]
     })}
@@ -221,7 +214,8 @@ export const image = {
 export const table = {
   state: {
     time: [],
-    upv: []
+    upv: [],
+    ...initialState.table
   },
   reducers: {
     setTable: (state, payload, title) => ({...state, [title]: [payload, ...state[title]]}),
@@ -282,13 +276,15 @@ export const section = {
       title: '',
       subTitle: '',
       description: ''
-    }
+    },
+    ...initialState.section
   },
   reducers: {
     setSection: (state, key, value) => {
-      console.log(state, "sadfdasf", key, 'sadfasf', value);
+      // console.log(state, "sadfdasf", key, 'sadfasf', value);
       return {...state, diagnosis: {...state.diagnosis, [key]: value}}},
     updateSection: (state, section, property) => {
+      // console.log(section, property);
       // console.log('IN MODELS', state, '1', state[section], '2', state[section][property[0]], section, property[0], property[1], property[2], property[3]);
       if (property.length !== 2) {
         const newArray = state[section][property[0]].map((el) => {
@@ -339,11 +335,12 @@ export const handover = {
     distance: '',
     naca: '',
     services: '',
-    note: ''
+    note: '',
+    ...initialState.handover
   },
   reducers: {
     setHandover: (state, title, payload) => {
-      console.log(state, "sadfdasf", title, 'sadfasf', payload);
+      // console.log(state, "sadfdasf", title, 'sadfasf', payload);
       return ({...state, [title]: {...state[title], [payload[0]]: payload[1]}})
     },
     updateHandover: (state, key, value) => {
@@ -360,6 +357,7 @@ export const last = {
     km: '',
     naca: '',
     services: '',
+    ...initialState.last
   },
   reducers: {
     setLast: (state, payload) => ({...state, ...payload}),

@@ -21,15 +21,7 @@ export default function SessionScreen({ navigation }) {
   }, [navigation])
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={stylesGlobal.container}>
-      {/* <Formik 
-        innerRef={form}
-        initialValues={store.getState().session}
-        enableReinitialize
-      >
-        {(props) => ( */}
-          <Form store={store}/>
-        {/* )} */}
-      {/* </Formik> */}
+        <Form store={store}/>
     </ScrollView>
   );
 }

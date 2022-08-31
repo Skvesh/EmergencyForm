@@ -1,13 +1,41 @@
 import React from 'react'
-import { ScrollView, View, StyleSheet } from 'react-native'
+import { ScrollView, View, StyleSheet, TouchableOpacity, Text } from 'react-native'
 import { stylesGlobal } from '../styles/style'
 import store from '../rematch/store'
 import { TextInput } from 'react-native-paper'
+import Button from '../components/Button'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 export default function LastScreen() {
+  const navigation = useNavigation();
+  // const { getItem, setItem } = useAsyncStorage('localStorage');
+  const downloadState = async (value) => {
+    try {
+      // const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem('download', value)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const remove = async () => {
+    // console.log(AsyncStorage.getItem('localData'));
+    try {
+      await AsyncStorage.removeItem('localData')
+      const jsonValue = await AsyncStorage.getItem('localData')
+      // console.log(jsonValue != null ? JSON.parse(jsonValue) : null)
+      // console.log(AsyncStorage.getItem('localData'));
+    } catch(e) {
+      console.log(e);
+      // remove error
+    }
+    console.log(AsyncStorage.getItem('localData'));
+  }
+
   return (
     <ScrollView style={stylesGlobal.container}>
-      <View style={{marginVertical: 25}}>
+      <View style={{marginTop: 25, marginBottom: 40}}>
         <TextInput
           style={[styles.input, {paddingBottom: 5}]}
           label='Poznámka'
@@ -56,6 +84,12 @@ export default function LastScreen() {
           onChangeText={(text) => store.dispatch.last.updateLast('services', text)}
         />
       </View>
+      <Button onPress={() => {
+        downloadState('true');
+        remove();
+        navigation.navigate('HomeScreen');
+      }}
+      title="Uložiť"/>
     </ScrollView>
   );
 }

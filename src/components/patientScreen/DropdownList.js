@@ -42,7 +42,7 @@ export default function DropdownList({ endScreen, property, onPress }) {
         }}>
           <Text style={[styles.text, { marginRight: 5 }]}>{title}</Text>
           <Image style={styles.image} source={visible 
-            ? require(`../../../assets/front.png`) 
+            ? require(`../../../assets/icons/expand_more.png`) 
             : require(`../../../assets/icons/expand_less.png`)}
           />
         </View>

@@ -6,14 +6,7 @@ import Title from '../Title'
 
 export default function CheckBox({ section, title, subTitle, data, onPress, style, styleChilldren }) {
   const [showed, setShowed] = useState(false)
-  // console.log(title, data, onPress, style);
-  // const [data, setData] = useState(DATA)
-  // useEffect(() => {
-  //   // const newData = getData()
-  //   console.log('state1', data);
-  //   // setData(newData)
-  //   console.log('state2', data);
-  // }, data)
+ 
   return (
     <View style={style}>
       {!!subTitle ? 

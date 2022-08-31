@@ -68,15 +68,7 @@ export default function FooterSection({ style, title, storeTitle, DATA, initialS
       <View style={{marginBottom: errors.error ? 10 : 20}}>
         {storeTitle === 'therapy' ?
           <View style={{flexDirection: 'row'}}>
-            {/* <TextInput
-              mode='outlined'
-              label='Názov'
-              activeOutlineColor='#007aff'
-              outlineColor="#000"
-              value={state.name}
-              onChangeText={(text) => onChange(text, 'name')}
-              style={[styles.input, { flex:2, marginRight: 20 }]}
-            /> */}
+           
             <TextInput
               mode='outlined'
               label='Opis'
@@ -110,18 +102,8 @@ export default function FooterSection({ style, title, storeTitle, DATA, initialS
           <Text style={styles.error}>{errors.error}</Text>
         )}
       </View>
-      {/* <TextInput
-        multiline
-        mode='outlined'
-        label='Opis'
-        style={[styles.input, {paddingVertical: 15, marginBottom: 25}]}
-        activeOutlineColor='#007aff'
-        outlineColor="#000"
-        value={state.description}
-        onChangeText={(text) => onChange(text, 'description')}
-      /> */}
       <FlatListStyled DATA={sections} onPress={onPress} 
-      onLongPress={onLongPress} text='name' onSubmit={onSubmit} editable={editable} onCancel={onCancel} onSave={onSave}/>
+      onLongPress={onLongPress} text='time' onSubmit={onSubmit} editable={editable} onCancel={onCancel} onSave={onSave}/>
     </View>
   )
 }

@@ -21,26 +21,19 @@ export default function LastScreen() {
   const mapperAreaClickHandler = async (item, idx, event) => {
     const currentSelectedAreaId = selectedAreaId;
     const indexInState =  objectArrayIndexOf(currentSelectedAreaId, item.id);
-    console.log(indexInState, 'INDEX');
+    // console.log(indexInState, 'INDEX');
     if (indexInState !== -1) {
       store.dispatch.image.removeImage(sideName, item.id)
       setRefresh(!refresh)
-      // setSelectedAreaId([
-      //   ...currentSelectedAreaId.slice(0, indexInState),
-      //   ...currentSelectedAreaId.slice(indexInState + 1),
-      // ]);
-      console.log('Removing id', item.id, selectedAreaId);
     } else {
       setModalVisible(true)
       store.dispatch.image.setImage(sideName, map[objectArrayIndexOf(map, item.id)])
       setSelectedId(item.id)
-      // setSelectedAreaId([...currentSelectedAreaId, map[objectArrayIndexOf(map, item.id)]]);
-      console.log('Setting Id', item.id, selectedAreaId);
     }
   };
   const modalClickHandler = (key, value) => {
     const indexInState =  objectArrayIndexOf(selectedAreaId, selectedId);
-    console.log('OBJECT', selectedAreaId[indexInState].fill, key, String(value));
+    // console.log('OBJECT', selectedAreaId[indexInState].fill, key, String(value));
     store.dispatch.image.updateImage(sideName, [indexInState, {...selectedAreaId[indexInState].fill, [key]: value}])
     if (key !== 'sine') {
       setModalVisible(false)

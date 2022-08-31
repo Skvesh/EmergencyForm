@@ -26,46 +26,6 @@ export default function SectionScreen({ navigation }) {
     description: '',
     id: '',
   })
-  // const [editable, setEditable] = useState(false)
-  // const therapy = store.getState().section.therapy
-  // const validate = (callback) => {
-  //   if (state[titleItem[0]].trim() === '') {
-  //     setErros({ [titleItem[0]]: `Vyžaduje sa zapisať ${titleItem[1]}` })
-  //   } else {
-  //     setErros({ [titleItem[0]]: null })
-  //     callback()
-  //   }
-  // }
-  // const onSubmit = () => {
-  //   // validate(() =>
-  //     store.dispatch.section.setArraySection({...state, id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())).toString()}, 'therapy')
-  //   // )
-  //   setState((state) => ({...state, id: ''}))
-  // }
-  // const onCancel = () => {
-  //   setEditable(!editable)
-  //   setState((state) => ({...state, id: ''}))
-  // }
-  // const onSave = () => {
-  //   // validate(() => store.dispatch.table.editTable(state, storeTitle))
-  //   setState((state) => ({...state, id: ''}))
-  //   setEditable(!editable)
-  // }
-  // const onPress = id => {
-  //   console.log(state);
-  //   if (state.id === id || state.id === '') {
-  //     setEditable(!editable)
-  //   }
-  //   const edit = therapy.reduce((object, item) => item.id === id ? item : object, {})
-  //   setState(edit)
-  //   console.log(edit);
-  // }
-  // const onLongPress = item => {
-  //   store.dispatch.table.removeArraySection(item, 'therapy')
-  //   setRefresh(!refresh)
-  //   console.log('LONGPRESS', therapy);
-  // }
-  
   return (
     <ScrollView style={stylesGlobal.container}>
       <View style={styles.table}>

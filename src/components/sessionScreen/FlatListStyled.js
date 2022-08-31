@@ -29,7 +29,7 @@ export default function FlatListStyled({DATA, onPress, onLongPress, text, editab
         horizontal={true}
         initialNumToRender={3}
         data={DATA}
-        renderItem={({item, index}) => <Item item={item} index={index} onPr/>}
+        renderItem={({item, index}) => <Item item={item} index={index}/>}
         keyExtractor={(item) => item.id}
       />
     </>

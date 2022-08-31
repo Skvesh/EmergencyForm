@@ -43,34 +43,7 @@ export default function ImageModal({modalVisible, setModalVisible, onPress, side
           <HandImage text='Zlomenina' source={'mm'} onPress={(state) => onPress('fillWith', state)}></HandImage>
           <HandImage text='Amputácia' source={'mmx'} onPress={(state) => onPress('fillWith', state)}></HandImage>
           <HandImage text='Popalenina st.' source={'lines'} onPress={(state) => onPress('fillWith', state)}></HandImage>
-          <Pressable style={{
-              alignSelf: 'stretch',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              height: 55,
-              paddingHorizontal: 20,
-              paddingVertical: 3,
-              alignItems: 'center',
-            }}
-          >
-            <TextInput 
-              style={{
-                flex: 1,
-                width: 0,
-                marginRight: 20,
-                borderBottomWidth: 1,
-                borderRadius: 4,
-                borderColor: '#000',
-                backgroundColor: '#fff',
-                fontSize: 20
-              }}
-            />
-            <RadioButton
-              // initial={item.checked.right}
-              // onPress={(state) => { onPress(section, item.title, state)}}
-              // style={{padding: 14}}
-            />
-          </Pressable>
+
         </View>
       </View>
     </Modal>

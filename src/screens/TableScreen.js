@@ -7,51 +7,6 @@ import Table from '../components/tableScreen/Table'
 import { timeData, upvData, timeTable, upvTable } from '../data';
 
 export default function TableScreen({ navigation })  {
-  // const timeData = [
-  //   { title: 'Čas', engTitle: 'time'},
-  //   { title: 'Systl. TK', subTitle: 'Torr', style: {backgroundColor: '#f7b6d7'}, engTitle: 'syst' },
-  //   { title: 'Diast. TK', subTitle: 'Torr',  style: {backgroundColor: '#f7b6d7'}, engTitle: 'diast' },
-  //   { title: 'SF (HR)', subTitle: 'min', style: {backgroundColor: '#f7b6d7'}, engTitle: 'sf' },
-  //   { title: 'DF (RR)', subTitle: 'min', style: {backgroundColor: '#a5ddfa'}, engTitle: 'df' },
-  //   { title: 'DO (TV)', subTitle: 'ml', style: {backgroundColor: '#a5ddfa'}, engTitle: 'do' },
-  //   { title: 'O saturacia', subTitle: '%', style: {backgroundColor: '#a5ddfa'}, engTitle: 'saturacia' },
-  //   { title: 'Glyk.', subTitle: 'mmo|/|', engTitle: 'glyk' },
-  //   { title: 'TT', subTitle: 'C', engTitle: 'tt' },
-  //   { title: 'GCS', style: {backgroundColor: '#d5dde1'}, engTitle: 'gcs' },
-  //   { title: 'TS', subTitle: '', engTitle: 'ts' },
-  //   { title: '', style: {marginBottom: 15}, engTitle: 'add' },
-  // ]
-  // const upvData = [
-  //   { title: 'UPV', style: {backgroundColor: '#a5ddfa'}, engTitle: 'upv'},
-  //   { title: 'Masáž', subTitle: '', style: {backgroundColor: '#f7b6d7'}, engTitle: 'massage' },
-  //   { title: 'Defibrilácia', subTitle: '',  style: {backgroundColor: '#f7b6d7'}, engTitle: 'defibrillation' },
-  //   { title: 'Pace-maker', subTitle: 'Ⓟ', style: {backgroundColor: '#f7b6d7'}, engTitle: 'paceMaker' },
-  //   { title: 'Transport', subTitle: 'T', style: {marginBottom: 15 }, engTitle: 'transport' },
-  // ]
-  // const timeTable = {
-  //   time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: "2-digit", second: "2-digit", hour12: false }),
-  //   syst: '',
-  //   diast: '',
-  //   sf: '',
-  //   df: '',
-  //   do: '',
-  //   saturacia: '',
-  //   glyk: '',
-  //   tt: '',
-  //   gcs: '',
-  //   ts: '',
-  //   add: {key: '', value: ''},
-  //   id: ''
-  // }
-  // const upvTable = {
-  //   upv: '',
-  //   massage: '',
-  //   diast: '',
-  //   defibrillation: '',
-  //   paceMaker: '',
-  //   transport: '',
-  // }
-
   return (
     <ScrollView style={stylesGlobal.container}>
       <Table storeTitle='time' DATA={timeData} initialState={timeTable} titleItem={['time', 'čas']} style={styles.table} navigation/>

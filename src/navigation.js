@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import SessionScreen from './screens/SessionScreen';
 import PatientScreen from './screens/PatientScreen';
 import { createStackNavigator } from '@react-navigation/stack'
@@ -12,12 +12,37 @@ import { Dimensions } from 'react-native'
 import HandOverScreen from './screens/HandOverScreen';
 import LastScreen from './screens/LastScreen';
 import ImageMapperScreen from './screens/ImageMapperScreen';
+import store from './rematch/store';
+import { useAsyncStorage } from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AppState } from "react-native";
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 
-
 function MainTab() {
+  const appState = useRef(AppState.currentState);
+  const writeItemToStorage = async value => {
+    const jsonValue = JSON.stringify(value)
+    await AsyncStorage.setItem('localData', jsonValue)
+    // await setItem(newValue);
+    // console.log('YEPP!!!');
+    // setValue(newValue);
+  };
+
+  useEffect(() => {
+    writeItemToStorage(store.getState());
+    const subscription = AppState.addEventListener("change", nextAppState => {
+      appState.current = nextAppState;
+      if (appState.current.match(/inactive|background/)) {
+        writeItemToStorage(store.getState());
+      }
+      // console.log("AppState", appState.current);
+    });
+    return () => {
+      subscription.remove();
+    };
+  }, []);
   return (
     <Tab.Navigator 
       initialRouteName='SessionScreen' 
@@ -74,10 +99,16 @@ export default function MainStack() {
         initialRouteName='HomeScreen'
         screenOptions={{
           // headerShown: false,
-          gestureEnabled: false
+          gestureEnabled: false,
         }}
       >
-        <Stack.Screen name='HomeScreen' component={HomeScreen}/>
+        <Stack.Screen
+          name='HomeScreen'
+          component={HomeScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen name='MainTab' component={MainTab}/>
       </Stack.Navigator>
     </NavigationContainer>
